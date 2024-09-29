@@ -1,1 +1,99 @@
-<p>register works!</p>
+<main class="h-screen flex flex-wrap items-center bg-gray-100">
+  <section
+    class="bg-white xl:w-[50%] lg:w-[60%] md:w-[70%] sm:w-[80%] p-5 flex flex-wrap rounded-md shadow-md mx-auto"
+  >
+    <form action="" [formGroup]="formGroupRegister">
+      <div class="w-[50%] flex flex-wrap justify-center text-center px-2 float-left">
+        <div class="w-full my-2 flex flex-wrap justify-center">
+          <label for="nombre1" class="w-full font-medium">Primer nombre</label>
+          <input
+            name="nombre1"
+            formControlName="nombre1"
+            type="text"
+            class="p-3 rounded-sm w-full border-2 text-center"
+            placeholder="Ingrese su nombre"
+          />
+        </div>
+        <div class="w-full my-2 flex flex-wrap justify-center">
+          <label for="nombre2" class="w-full font-medium">Segundo nombre</label>
+          <input
+            name="nombre2"
+            formControlName="nombre2"
+            type="text"
+            class="p-3 rounded-sm w-full border-2 text-center"
+            placeholder="Ingrese su nombre"
+          />
+        </div>
+        <div class="w-full my-2 flex flex-wrap justify-center">
+          <label for="apellido1" class="w-full font-medium"
+            >Primer apellido</label
+          >
+          <input
+            name="apellido1"
+            formControlName="apellido1"
+            type="text"
+            class="p-3 rounded-sm w-full border-2 text-center"
+            placeholder="Ingrese su apellido"
+          />
+        </div>
+      </div>
+      <div class="w-[50%] flex flex-wrap justify-center text-center px-2 float-right">
+        <div class="w-full my-2 flex flex-wrap justify-center">
+          <label for="apellido2" class="w-full font-medium"
+            >Segundo apellido</label
+          >
+          <input
+            name="apellido2"
+            formControlName="apellido2"
+            type="text"
+            class="p-3 rounded-sm w-full border-2 text-center"
+            placeholder="Ingrese su apellido"
+          />
+        </div>
+        <div class="w-full my-2 flex flex-wrap justify-center">
+          <label for="documento" class="w-full font-medium"
+            >Nro Documento</label
+          >
+          <input
+            name="documento"
+            formControlName="documento"
+            type="text"
+            class="p-3 rounded-sm w-full border-2 text-center"
+            placeholder="Ingrese su documento"
+          />
+        </div>
+        <div class="w-full my-2 flex flex-wrap justify-center">
+          <label for="password" class="w-full font-medium">Contraseña</label>
+          <input
+            name="password"
+            formControlName="password"
+            type="text"
+            class="p-3 rounded-sm w-full border-2 text-center"
+            placeholder="Ingrese su contraseña"
+          />
+        </div>
+      </div>
+      <div
+        class="w-full p-3 border-2 rounded-sm shadow-md flex items-center justify-around mt-2"
+      >
+        <div class="flex items-center justify-evenly w-[50%]">
+          <div class="ml-2">
+            <p class="font-medium">Drogueria</p>
+            <p class="font-medium text-amber-300 text-lg">Simon Bolivar</p>
+          </div>
+          <img
+            src="img/logo.jpeg"
+            alt="logo"
+            class="w-[80px] h-[80px] rounded-full"
+          />
+        </div>
+        <button
+          class="w-[45%] bg-amber-200 p-3 rounded-sm hover:bg-amber-300 shadow-sm font-medium"
+          (click)="register()"
+        >
+          REGISTRARSE
+        </button>
+      </div>
+    </form>
+  </section>
+</main>
