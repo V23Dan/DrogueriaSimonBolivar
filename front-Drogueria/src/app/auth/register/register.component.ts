@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import {
-  FormBuilder,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { AlertService } from '../../alert/alert.service';
+import { AbstractControl } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -22,10 +22,13 @@ export default class RegisterComponent {
       [
         Validators.required,
         Validators.maxLength(20),
-        Validators.pattern('^[a-zA-Z]*$'),
+        Validators.pattern('^[a-zA-Z]*$')
       ],
     ],
-    nombre2: ['', [Validators.maxLength(20), Validators.pattern('^[a-zA-Z]*$')]],
+    nombre2: [
+      '',
+      [Validators.maxLength(20), Validators.pattern('^[a-zA-Z]*$')],
+    ],
     apellido1: [
       '',
       [
@@ -52,13 +55,48 @@ export default class RegisterComponent {
     ],
   });
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private alertService: AlertService
+  ) {}
 
   register(): void {
-    if (this.formGroupRegister.valid) {
-      alert('Formulario correcto, sera enviado');
-    } else {
-      alert('Formulario no valido');
+    const campos = [
+      { control: 'nombre1', mensaje: 'Error en el campo primer nombre' },
+      { control: 'nombre2', mensaje: 'Error en el campo segundo nombre' },
+      { control: 'apellido1', mensaje: 'Error en el campo primer apellido' },
+      { control: 'apellido2', mensaje: 'Error en el campo segundo apellido' },
+      { control: 'documento', mensaje: 'Error en el campo documento' },
+      { control: 'password', mensaje: 'Error en el campo contraseña' },
+    ];
+    for (const campo of campos) {
+      if (
+        (this.formGroupRegister.controls as { [key: string]: AbstractControl })[
+          campo.control
+        ].errors
+      ) {
+        this.alertService.showToast(campo.mensaje, 'error');
+        return; // Sale después de mostrar el primer error encontrado
+      }
     }
+
+    this.authService.registerUser(this.formGroupRegister.value).then((res) => {
+      if(res === 200){
+        Swal.fire({
+          title: 'Registrado',
+          text: 'Sera direccionado al login',
+          icon: 'success',
+        })
+      }else{
+        Swal.fire({
+          title: 'Error!',
+          text: 'No fue registrado',
+          icon: 'error',
+        })
+      }
+    }
+    );
+
   }
 }

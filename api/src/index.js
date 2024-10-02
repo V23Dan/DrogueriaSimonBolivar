@@ -1,10 +1,10 @@
 import app from "./app.js";
 import { sequelize } from "./database/database.js";
-import './models/medicament.js';
+import './models/users.js';
 
 async function main() {
   try {
-    await sequelize.sync({force:true});
+    await sequelize.sync();
     app.listen(3000);
     console.log("Server en puerto: ", 3000);
   } catch (error) {
