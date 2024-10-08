@@ -1,3 +1,4 @@
+import { where } from "sequelize";
 import { user } from "../models/users.js";
 
 export const registerUser = async (req, res) => {
@@ -13,9 +14,38 @@ export const registerUser = async (req, res) => {
       documento,
       password,
     });
+
     console.log("Usuario: ", nombre1, " registrado con exito");
-    return res.status(200).message("Registrado con exito");
+    return res.send(true);
   } catch (error) {
-    return res.status(500).message("Error en el registro del usuario");
+    return res.send(false);
+  }
+};
+
+export const loginUser = async (req, res) => {
+  console.log("Entra al login");
+
+  const { documento, pass } = req.body;
+
+  try {
+    const existingUser = await user.findOne({ where: { documento } });
+
+    if (!existingUser) {
+      return res
+        .status(400)
+        .json({ message: "Documento o contraseña incorrectos" });
+    }
+
+    if (pass !== existingUser.pass) {
+      return res
+        .status(400)
+        .json({ message: "Documento o contraseña incorrectos" });
+    }
+
+    return res.send(true);
+  } catch (error) {
+    // Manejo de errores
+    console.error("Error during login:", error);
+    return res.send(false);
   }
 };

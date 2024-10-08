@@ -18,6 +18,11 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'dashboard',
+    title: 'Dashboard',
+    loadComponent: () => import('./dashboard/dashboard.component'),
+  },
+  {
     path: '',
     redirectTo: 'auth/login',
     pathMatch: 'full',

@@ -5,50 +5,55 @@
     <section
       class="w-[60%] p-5 flex flex-wrap justify-center rounded-br-md rounded-tr-md shadow-md"
     >
-      <div class="w-full flex justify-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="size-[200px] border-2 rounded-full p-2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-          />
-        </svg>
-      </div>
-      <div
-        class="w-full flex flex-wrap justify-center text-center p-2 xl:px-10 lg:px-5 md:px-2 sm:px-1"
-      >
-        <div class="w-[85%] m-2 flex flex-wrap justify-center">
-          <label for="documento" class="w-full font-medium"
-            >Nro Documento</label
+      <form action="" [formGroup]="formGroupLogin">
+        <div class="w-full flex justify-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-[200px] border-2 rounded-full p-2"
           >
-          <input
-            name="documento"
-            type="text"
-            class="p-3 rounded-sm w-full border-2 text-center"
-            placeholder="Ingrese su documento"
-          />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+            />
+          </svg>
         </div>
-        <div class="w-[85%] m-2 flex flex-wrap justify-center">
-          <label for="password" class="w-full font-medium">Contraseña</label>
-          <input
-            name="password"
-            type="text"
-            class="p-3 rounded-sm w-full border-2 text-center"
-            placeholder="Ingrese su contraseña"
-          />
+        <div
+          class="w-full flex flex-wrap justify-center text-center p-2 xl:px-10 lg:px-5 md:px-2 sm:px-1"
+        >
+          <div class="w-[85%] m-2 flex flex-wrap justify-center">
+            <label for="documento" class="w-full font-medium"
+              >Nro Documento</label
+            >
+            <input
+              id="documento"
+              formControlName="documento"
+              type="text"
+              class="p-3 rounded-sm w-full border-2 text-center"
+              placeholder="Ingrese su documento"
+            />
+          </div>
+          <div class="w-[85%] m-2 flex flex-wrap justify-center">
+            <label for="password" class="w-full font-medium">Contraseña</label>
+            <input
+              id="password"
+              formControlName="password"
+              type="text"
+              class="p-3 rounded-sm w-full border-2 text-center"
+              placeholder="Ingrese su contraseña"
+            />
+          </div>
         </div>
-      </div>
+      </form>
       <div
         class="w-full flex flex-wrap justify-center xl:px-10 lg:px-5 md:px-2 sm:px-1"
       >
         <button
+          (click)="Login()"
           class="w-[85%] bg-amber-200 p-3 rounded-sm hover:bg-amber-300 shadow-md font-medium"
         >
           INGRESAR

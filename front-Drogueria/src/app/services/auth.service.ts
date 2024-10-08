@@ -16,4 +16,16 @@ export class AuthService {
       console.log('Error: ', error);
     }
   }
+
+  private readonly loginUserURL = 'http://localhost:3000/auth/loginUser';
+
+  async loginUser(userDataLogin: any): Promise<any> {
+    try {
+      const res = await axios.post(this.loginUserURL, userDataLogin);
+      console.log('Datos de login enviados');
+      return res.data;
+    } catch (error) {
+      console.log('Error: ', error);
+    }
+  }
 }

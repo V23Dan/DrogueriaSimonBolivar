@@ -22,7 +22,7 @@ export default class RegisterComponent {
       [
         Validators.required,
         Validators.maxLength(20),
-        Validators.pattern('^[a-zA-Z]*$')
+        Validators.pattern('^[a-zA-Z]*$'),
       ],
     ],
     nombre2: [
@@ -82,21 +82,20 @@ export default class RegisterComponent {
     }
 
     this.authService.registerUser(this.formGroupRegister.value).then((res) => {
-      if(res === 200){
-        Swal.fire({
-          title: 'Registrado',
-          text: 'Sera direccionado al login',
-          icon: 'success',
-        })
-      }else{
+      if (!res) {
         Swal.fire({
           title: 'Error!',
           text: 'No fue registrado',
           icon: 'error',
-        })
+        });
+      } else {
+        Swal.fire({
+          title: 'Registrado',
+          text: 'Sera direccionado al login',
+          icon: 'success',
+        });
+        this.router.navigate(['auth/login']);
       }
-    }
-    );
-
+    });
   }
 }
